@@ -14,6 +14,9 @@ DECODERS:Dict[str, Callable] = {
 
 
 class DecodeError(Exception):
+    """
+    Raised when a string cannot be decoded.
+    """
     pass
 
 
