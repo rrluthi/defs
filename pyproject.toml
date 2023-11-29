@@ -9,6 +9,8 @@ readme = "README.md"
 python = "3.12"
 typer = {extras = ["all"], version = "^0.9.0"}
 art = "^6.1"
+shortuuid = "^1.0.11"
+nanoid = "^2.0.0"
 
 
 [build-system]

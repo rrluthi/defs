@@ -15,7 +15,7 @@ def dec(string: str, algo: Optional[str] = typer.Argument(None)):
 
 
 @app.command()
-def hsh():
+def hsh(string: str, algo: Optional[str] = typer):
     typer.echo("Hash")
 
 

@@ -2,7 +2,7 @@ from hashlib import sha256, sha512, sha1, md5, sha224, sha384, sha3_224, sha3_25
                      blake2s, shake_128, shake_256
 
 
-HASH_ALGORITHM = {
+HASH_ALGORITHMS = {
     'md5': md5,
     'sha1': sha1,
     'sha256': sha256,
@@ -20,17 +20,27 @@ HASH_ALGORITHM = {
 }
 
 
-def hash_file(hash_type: str, file_path: str) -> str:
+def hashing_algos() -> list[str]:
+    return list(HASH_ALGORITHMS.keys())
+
+
+def has_hashing_algo(algo: str) -> bool:
+    return algo.lower().strip() in HASH_ALGORITHMS
+
+
+def hash_file(file_path: str, algo: str) -> str:
     """
     Hash a file using the given hash type.
     """
     with open(file_path, 'rb') as file:
-        return HASH_ALGORITHM[hash_type](file.read()).hexdigest()
+        return HASH_ALGORITHMS[algo](file.read()).hexdigest()
 
 
-def hash_string(hash_type: str, hash_string: str) -> str:
+def hash_string(text: str, algo: str) -> str:
     """
     Hash a string using the given hash type.
     """
-    return HASH_ALGORITHM[hash_type](hash_string.encode('utf-8')).hexdigest()
+    if isinstance(text, str):
+        text = text.encode('utf-8')
+    return HASH_ALGORITHMS[algo](text).hexdigest()
 
